@@ -1,20 +1,9 @@
 {
   "name": "github-roadmap-api",
   "version": "1.0.0",
-  "description": "API for managing GitHub roadmaps",
-  "main": "index.js",
+  "description": "API for GitHub roadmap",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "mammoth": "^1.6.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "keywords": ["github", "roadmap", "api"],
-  "author": "",
-  "license": "ISC"
+    "start": "node src/server.js"
+  }
 }
