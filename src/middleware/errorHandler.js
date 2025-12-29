@@ -1,15 +1,21 @@
 const errorHandler = (err, req, res, next) => {
-  console.error('Error:', err);
-
-  const status = err.status || 500;
+  const status = err.status || err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
 
+  console.error(`[Error] ${status}: ${message}`);
+
+  if (err.name === 'MulterError') {
+    return res.status(400).json({
+      error: 'File Upload Error',
+      message: 'Invalid file upload',
+      code: err.code,
+    });
+  }
+
   res.status(status).json({
-    error: {
-      status,
-      message,
-      ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
-    },
+    error: 'Server Error',
+    message,
+    code: 'INTERNAL_SERVER_ERROR',
   });
 };
 
